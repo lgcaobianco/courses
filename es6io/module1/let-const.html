@@ -1,0 +1,36 @@
+<head>
+    <title>Let e Const</title>
+</head>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Let Const</title>
+</head>
+
+<body>
+    <script>
+        //let e const n podem ser redecladaradas se ja existirem no msm escopo
+        // const eh constante e n pode ser modificado
+        const key = 'abc123';
+        let points = 50;
+        let winner = false;
+        if (points > 40) {
+            let winner = true; // essa var soh existe aqui dentro
+        }
+        console.log(winner); // valor esperado eh false
+
+        // nao posso atualizar o objeto inteiro mas posso atualizar as props
+        const person2 = {
+            name: 'Luiz',
+            age: '23'
+        }
+        console.log(person2);
+        person2.name = 'Luiz Gustavo';
+        console.log(person2);
+        console.log('teste');
+    </script>
+</body>
+
+</html>
