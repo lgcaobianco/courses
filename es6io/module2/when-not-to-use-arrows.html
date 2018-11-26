@@ -1,0 +1,66 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>When not to use arrow functions!</title>
+</head>
+
+<body>
+    <style>
+        button {
+            font-size: 100px;
+        }
+
+        .on {
+            background: #ffc600;
+        }
+    </style>
+
+    <button id="pushy">Aperte aqui!</button>
+    <ul id="parent"></ul>
+    </div>
+    <script>
+        //quando realmente precisamos de THIS
+        //lembrando: a palavra THIS nao eh feita bind qnd usamos arrow function
+        const button = document.querySelector('#pushy');
+        button.addEventListener('click', function () {
+            this.classList.toggle('on');
+        });
+
+        // quando precisamos que um metodo faca bind a um objeto
+        const person = {
+            points: 23,
+            score() {
+                console.log(this);
+                this.points++;
+            }
+        }
+
+
+        // quando precisamos adicionar um metodo prototipo
+        class Car {
+            constructor(make, color) {
+                this.make = make;
+                this.color = color;
+            }
+        }
+        const beemer = new Car('bmw', 'blue');
+        const subie = new Car('Subaru', 'white');
+        Car.prototype.summarize = function () {
+            return `Este carro eh um ${this.make} na cor ${this.color} `;
+        };
+
+        //nao temos acesso ao objeto ARGUMENTS
+        const orderChildren = function () {
+            const children = Array.from(arguments);
+            return children.map((child, i) => {
+                return `${child} era filho #${i+1}`;
+            });
+            console.log(arguments);
+        }
+    </script>
+</body>
+
+</html>
