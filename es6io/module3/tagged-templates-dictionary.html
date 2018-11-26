@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tagged Templates - Dictionary</title>
+</head>
+
+<body>
+    <div class="bio">
+
+    </div>
+    <script>
+        const dict = {
+            HTML: 'Hyper Text Markup Language',
+            CSS: 'Cascading Style Sheet',
+            JS: 'Javascript'
+        };
+
+        function addAbbreviations(strings, ...values) {
+            const abbreviated = values.map(value => {
+                if (dict[value]) {
+                    return `<abbr title = "${dict[value]}">${value}</abbr>`;
+                }
+                return value;
+            });
+            return strings.reduce((sentence, string, i) => {
+                return `${sentence}${string}${abbreviated[i] || ''}`;
+            }, '');
+        }
+
+        const first = 'Luiz';
+        const last = 'Caobianco';
+        const sentence =
+            addAbbreviations `Hello, my name is ${first} ${last} and Im
+            trying to learn ${'HTML'}, ${'CSS'}, and ${'JS'}`;
+        const bio = document.querySelector('.bio');
+        const p = document.createElement('p');
+        p.innerHTML = sentence;
+        bio.appendChild(p);
+    </script>
+
+</body>
+
+</html>
