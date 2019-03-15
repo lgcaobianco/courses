@@ -27,7 +27,7 @@ class ScientificMethods:
             energyMatrix.append(energyArray)
         normalizedEnergy = list(list())
         for signal in energyMatrix:
-            signal /= max(np.asarray(signal))
+            signal /= sum(np.asarray(signal))
             normalizedEnergy.append(signal)
         return normalizedEnergy
 
