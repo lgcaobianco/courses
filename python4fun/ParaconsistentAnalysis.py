@@ -46,21 +46,20 @@ class ParaconsistentAnalysis:
             self.dataset = pd.DataFrame(dataframe_of_signals)
 
     def findalpha(self):
-        self.mins = np.zeros((self.nClasses, len(self.names)))
-        self.maxs = np.zeros((self.nClasses, len(self.names)))
-        sims = np.zeros((self.nClasses, len(self.names)))
+        dataset = self.dataset
+        self.mins = np.zeros((self.nClasses, len(self.dataset.columns)))
+        self.maxs = np.zeros((self.nClasses, len(self.dataset.columns)))
         for i in range(0, self.nClasses):
-            temp = self.dataset.iloc[self.lengthOfClasses[i] *
-                                     i:(self.lengthOfClasses[i]*i)+self.lengthOfClasses[i]]
-            for j in range(0, len(self.names)):
-                self.mins[i][j] = min(temp[self.names[j]])
-                self.maxs[i][j] = max(temp[self.names[j]])
-        sims = 1 - self.maxs + self.mins
-        avg = np.average(sims[0])
-        for i in range(1, len(sims)):
-            if(avg > np.average(sims[i])):
-                avg = np.average(sims[i])
-        self.alpha = avg
+            startOfCrop = int()
+            if(i == 0):
+                temp = dataset.iloc[0:self.lengthOfClasses[i]]
+            else:
+                for j in range(0, i):
+                    startOfCrop += self.lengthOfClasses[j]
+                temp = dataset.iloc[startOfCrop:(
+                    startOfCrop+self.lengthOfClasses[i])]
+            print(temp)
+            print(np.asarray(temp).min())
 
     def findbeta(self):
         for i in range(0, self.nClasses-1):
@@ -76,7 +75,7 @@ class ParaconsistentAnalysis:
 
     def perform_paraconsistent_analysis(self):
         self.findalpha()
-        self.findbeta()
+        # self.findbeta()
         self.g1 = self.alpha - self.beta
         self.g2 = self.alpha + self.beta - 1
         print("G1 coordinate is: " + str(self.g1))
