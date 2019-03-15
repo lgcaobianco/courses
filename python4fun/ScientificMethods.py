@@ -17,8 +17,6 @@ class ScientificMethods:
 
     def extractEnergy(self, signals):
         energyMatrix = list(list())
-        print("the energy matrix is")
-        print(len(energyMatrix))
         for signal in signals:
             energyArray = []
             for array in signal:
@@ -38,4 +36,3 @@ sm = ScientificMethods(3)
 energyMatrix = sm.extractEnergy(sm.filteredArrays)
 pa = ParaconsistentAnalysis(energyMatrix, readFromFile=False)
 pa.perform_paraconsistent_analysis()
-print(energyMatrix)
