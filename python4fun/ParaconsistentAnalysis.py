@@ -40,8 +40,10 @@ class ParaconsistentAnalysis:
             if(not self.isnormalized):
                 for i in range(0, len(names)):
                     c = str('column' + str(i))
-                    self.dataset[c] = self.dataset[c].add(min(self.dataset[c]))
-                    self.dataset[c] = self.dataset[c].div(max(self.dataset[c]))
+                    self.dataset[c] = self.dataset[c].add(
+                        min(self.dataset[c]))
+                    self.dataset[c] = self.dataset[c].div(
+                        max(self.dataset[c]))
         else:
             self.dataset = pd.DataFrame(dataframe_of_signals)
 
@@ -49,7 +51,12 @@ class ParaconsistentAnalysis:
         dataset = self.dataset
         self.mins = np.zeros((self.nClasses, len(self.dataset.columns)))
         self.maxs = np.zeros((self.nClasses, len(self.dataset.columns)))
+        minsOfClasses = list(list())
+        maxsOfClasses = list(list())
+        listofalphas = list()
         for i in range(0, self.nClasses):
+            mins = list()
+            maxs = list()
             startOfCrop = int()
             if(i == 0):
                 temp = dataset.iloc[0:self.lengthOfClasses[i]]
@@ -58,8 +65,14 @@ class ParaconsistentAnalysis:
                     startOfCrop += self.lengthOfClasses[j]
                 temp = dataset.iloc[startOfCrop:(
                     startOfCrop+self.lengthOfClasses[i])]
-            print(temp)
-            print(np.asarray(temp).min())
+            for j in range(0, len(dataset.columns)):
+                onlyColumns = dataset.iloc[:, j]
+                mins.append(min(onlyColumns))
+                maxs.append(max(onlyColumns))
+            similarities = 1 - np.asarray(maxs) + np.asarray(mins)
+            listofalphas.append(similarities.mean())
+        self.alpha = min(listofalphas)
+        print("alpha is: "+str(self.alpha))
 
     def findbeta(self):
         for i in range(0, self.nClasses-1):
