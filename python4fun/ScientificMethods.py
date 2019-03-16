@@ -32,7 +32,7 @@ class ScientificMethods:
         return normalizedEnergy
 
 
-sm = ScientificMethods(3)
+sm = ScientificMethods(2)
 energyMatrix = sm.extractEnergy(sm.filteredArrays)
 pa = ParaconsistentAnalysis(energyMatrix, readFromFile=False)
 pa.perform_paraconsistent_analysis()

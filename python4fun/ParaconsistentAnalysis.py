@@ -75,20 +75,21 @@ class ParaconsistentAnalysis:
         print("alpha is: "+str(self.alpha))
 
     def findbeta(self):
+        dataset = self.dataset
+        lengthOfClasses = self.lengthOfClasses
         for i in range(0, self.nClasses-1):
-            overlap = int()
-            for dimension in range(0, len(self.dataset.columns)):
-                temp = np.asarray(self.dataset.iloc[(
-                    i+1) * self.lengthOfClasses[i+1]: len(self.dataset), :])
-                for j in range(0, len(temp)):
-                    if(temp[j, dimension] >= self.mins[i][dimension] or temp[j, dimension] <= self.maxs[i][dimension]):
-                        overlap = overlap + 1
-        self.beta = (overlap / (self.nClasses * (self.nClasses - 1) *
-                                len(self.dataset.columns) * self.lengthOfClasses[0]))
+            temp = dataset.iloc[i*lengthOfClasses[i]:i *
+                                lengthOfClasses[i]+lengthOfClasses[i], :]
+            temp2 = dataset.iloc[i*lengthOfClasses[i] +
+                                 lengthOfClasses[i]:len(dataset), :]
+            print("temp is:")
+            print(temp)
+            print("temp2 is:")
+            print(temp2)
 
     def perform_paraconsistent_analysis(self):
         self.findalpha()
-        # self.findbeta()
+        self.findbeta()
         self.g1 = self.alpha - self.beta
         self.g2 = self.alpha + self.beta - 1
         print("G1 coordinate is: " + str(self.g1))
