@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Destructuring</title>
+</head>
+
+<body>
+    <script>
+        const person = {
+            first: 'Luiz',
+            last: 'Caobianco',
+            country: 'Brazil',
+            city: 'Sao Jose do Rio Preto',
+            instagram: '@gucaobianco'
+        };
+
+        const luiz = {
+            first: 'Luiz',
+            last: 'Caobianco',
+            country: 'Brazil',
+            city: 'Sao Jose do Rio Preto',
+            links: {
+                social: {
+                    facebook: 'facebook.com/gu.caobianco',
+                    instagram: '@gucaobianco'
+                },
+                web: {
+                    blog: 'not available'
+                }
+            }
+        }
+
+        // destructuring as renaming
+        const {
+            instagram: insta,
+            facebook: fb
+        } = luiz.links.social;
+
+        const settings = {
+            width: 300,
+            color: 'black'
+        }
+        const {
+            width = 100, height = 100, color = 'black', fontSize = 25
+        } = settings;
+    </script>
+</body>
+
+</html>

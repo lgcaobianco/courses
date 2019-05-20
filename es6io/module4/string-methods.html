@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>String Methods</title>
+</head>
+
+<body>
+    <script>
+        const course = 'RFB';
+        const flightNumber = '20-ac2018-jz';
+        const accountNumber = '327819362178RT0001';
+
+        const make = 'BMW';
+        const model = 'x5';
+        const color = 'royal blue';
+
+        //includes
+        console.log(course.includes('rfb'));
+
+        //startsWith s/ numero
+        console.log('deve ser false: ' + flightNumber.startsWith('ac'));
+        //c/ numero
+        console.log('deve ser true: ' + flightNumber.startsWith('ac', 3));
+
+        //ends with s/ numero
+        console.log('deve ser false: ' + accountNumber.endsWith('RT'));
+        //c numero
+        console.log('deve ser true', accountNumber.endsWith('RT', 14));
+
+        //repeat
+        function leftPad(str, length = 20) {
+            return `-> ${' '.repeat(length - str.length)}${str}`;
+        }
+        console.log(leftPad(make));
+        console.log(leftPad(model));
+        console.log(leftPad(color));
+    </script>
+</body>
+
+</html>

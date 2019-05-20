@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template Strings - Looping</title>
+</head>
+
+<body>
+    <script>
+        const dogs = [{
+                name: 'snickers',
+                age: 2
+            },
+            {
+                name: 'hugo',
+                age: 8
+            },
+            {
+                name: 'Sunny',
+                age: 1
+            },
+            {
+                name: 'Nina',
+                age: 1
+            }
+        ];
+
+        const markup =
+            `
+            ${dogs.map(dog => `<li>The dog ${dog.name} is ${dog.age * 7} years old!</li>`).join('')}
+        `;
+        document.body.innerHTML = markup;
+    </script>
+</body>
+
+</html>
