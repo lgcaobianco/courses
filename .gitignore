@@ -9,3 +9,5 @@ react/react-for-beginners/catch-of-the-day/node_modules/*
 react/react-advanced/sick-fits/frontend/node_modules/*
 react/react-advanced/sick-fits/backend/node_modules/*
 react/react-advanced/sick-fits/frontend/.next/*
+nodejs/dang-thats-delicious/node_modules/*
+nodejs/dang-thats-delicious/variables.env
