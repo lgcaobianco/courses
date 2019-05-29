@@ -8,9 +8,7 @@ describe("my first test", function() {
     // act
     const storeName = "my beautiful store";
     cy.get("#name").type(storeName);
-
     cy.get("#description").type("look at this gorgeous and delicious food");
-
     cy.get("#address").type("São José do Rio Preto");
     cy.wait(2000);
     cy.get("#address").type("{downarrow} {enter}");
